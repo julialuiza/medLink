@@ -13,21 +13,7 @@ function Consultas() {
     minute: '2-digit',
   };
 
-  const [appointments, setAppointments] = useState([
-    {
-      id: 1,
-      dataConsulta: '2023-08-25T10:00:00.000Z',
-      idMedico: 1,
-      idPaciente: 2,
-    },
-    {
-      id: 2,
-      dataConsulta: '2023-08-26T14:30:00.000Z',
-      idMedico: 2,
-      idPaciente: 3,
-    },
-    // ... other appointments
-  ]);
+  const [appointments, setAppointments] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [newAppointmentDate, setNewAppointmentDate] = useState('');
   const [selectedDoctorId, setSelectedDoctorId] = useState('');
@@ -38,19 +24,18 @@ function Consultas() {
   const [deletionAppointmentId, setDeletionAppointmentId] = useState('');
 
   const fetchAppointments = async () => {
-    // Fetch appointments using GET request
-    // For simplicity, let's assume you have a function called fetchAppointments
-    // const appointmentsData = await fetchAppointments();
-    // setAppointments(appointmentsData);
+    fetch('https://hackathon-332-api-production.up.railway.app/agenda')
+      .then((response) => response.json())
+      .then((data) => setAppointments(data));
   };
 
   useEffect(() => {
-    //    fetchAppointments();
+    fetch('https://hackathon-332-api-production.up.railway.app/agenda')
+      .then((response) => response.json())
+      .then((data) => setAppointments(data));
   }, []);
 
   const handleEditAppointment = async () => {
-    // Implement logic to edit appointment time
-    // Use the PUT endpoint for editing
     await fetch(`https://miniature-orbit-q64wrq577wh99q6-8090.app.github.dev/agenda/${editedAppointmentId}`, {
       method: 'PUT',
       headers: {
@@ -59,32 +44,18 @@ function Consultas() {
       body: JSON.stringify({ dataConsulta: editedAppointmentDate }),
     });
 
-    // Refresh the appointments list
     fetchAppointments();
     handleEditModalClose();
   };
 
-  const handleCancel = async (appointmentId) => {
-    // Implement logic to cancel appointment
-    // Use the DELETE endpoint for canceling
-    await fetch(`https://miniature-orbit-q64wrq577wh99q6-8090.app.github.dev/agenda/${appointmentId}`, {
-      method: 'DELETE',
-    });
-
-    // Refresh the appointments list
-    fetchAppointments();
-  };
-
   const handleCreateAppointment = async () => {
-    // Implement logic to create a new appointment
-    // Use the POST endpoint for creating a new appointment
     const data = {
       dataConsulta: newAppointmentDate,
-      idMedico: selectedDoctorId,
+      idMedico: Number(selectedDoctorId),
       idPaciente: 1,
     };
 
-    await fetch('https://miniature-orbit-q64wrq577wh99q6-8090.app.github.dev/agenda', {
+    await fetch('https://hackathon-332-api-production.up.railway.app/agenda', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -92,25 +63,21 @@ function Consultas() {
       body: JSON.stringify(data),
     });
 
-    // Refresh the appointments list
     fetchAppointments();
-    setShowModal(false); // Close the modal after creating appointment
+    setShowModal(false);
   };
 
   const handleConfirmDelete = async () => {
-    // Implement logic to delete appointment
-    // Use the DELETE endpoint for deleting
-    await fetch(`https://miniature-orbit-q64wrq577wh99q6-8090.app.github.dev/agenda/${deletionAppointmentId}`, {
+    await fetch(`https://hackathon-332-api-production.up.railway.app/agenda/${deletionAppointmentId}`, {
       method: 'DELETE',
     });
 
-    // Refresh the appointments list
     fetchAppointments();
     handleDeleteModalClose();
   };
 
   const handleNew = () => {
-    setShowModal(true); // Show the modal when the "New Appointment" button is clicked
+    setShowModal(true);
   };
 
   const handleCloseModal = () => {
@@ -145,41 +112,52 @@ function Consultas() {
         <title>{title}</title>
       </Helmet>
       <main className="container-fluid text-center">
-        <div className="col-lg-6 mx-auto">
+        <div className="col-lg-8 mx-auto">
+          <div className="my-5">
+            <Button variant="success" onClick={handleNew}>
+              Novo agendamento
+            </Button>
+          </div>
           <Table striped bordered hover>
             <thead>
               <tr>
-                <td colSpan="3">
-                  <Button variant="success" onClick={handleNew}>
-                    Novo agendamento
-                  </Button>
-                </td>
-              </tr>
-              <tr>
-                <th>ID</th>
+                <th>ID - Paciente</th>
                 <th>Data</th>
+                <th>Local</th>
+                <th>Especialidade</th>
                 <th>Ações</th>
               </tr>
             </thead>
-            <tbody>
-              {appointments.map((appointment) => (
-                <tr key={appointment.id}>
-                  <td>{appointment.id}</td>
-                  <td>{new Date(appointment.dataConsulta).toLocaleString('pt-BR', options).replace(',', ' -')}</td>
-                  <td>
-                    <Button
-                      variant="primary"
-                      onClick={() => handleEditModalOpen(appointment.id, appointment.dataConsulta)}
-                    >
-                      Editar
-                    </Button>
-                    <Button variant="danger" onClick={() => handleDeleteModalOpen(appointment.id)}>
-                      Cancelar
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+            {appointments ? (
+              <tbody>
+                {appointments.map((appointment) => (
+                  <tr key={appointment.id}>
+                    <td>
+                      {appointment.paciente.id} - {appointment.paciente.nome}
+                    </td>
+                    <td>{new Date(appointment.dataConsulta).toLocaleString('pt-BR', options).replace(',', ' -')}</td>
+                    <td>{appointment.medico.hospital}</td>
+                    <td>
+                      {appointment.medico.nome} - {appointment.medico.especialidade}
+                    </td>
+
+                    <td>
+                      <Button
+                        variant="primary"
+                        onClick={() => handleEditModalOpen(appointment.id, appointment.dataConsulta)}
+                      >
+                        Editar
+                      </Button>
+                      <Button variant="danger" onClick={() => handleDeleteModalOpen(appointment.id)}>
+                        Cancelar
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            ) : (
+              <p className="fw-bold">'Carregando...'</p>
+            )}
           </Table>
 
           <Modal show={showModal} onHide={handleCloseModal}>

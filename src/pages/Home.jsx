@@ -13,7 +13,7 @@ function Home() {
   };
 
   useEffect(() => {
-    fetch('https://miniature-orbit-q64wrq577wh99q6-8090.app.github.dev/agenda')
+    fetch('https://hackathon-332-api-production.up.railway.app/agenda')
       .then((response) => response.json())
       .then((data) => setAgenda(data));
   }, []);
@@ -31,7 +31,7 @@ function Home() {
             {agenda ? (
               <>
                 <div className="mx-auto my-5">
-                  <h5 className="text-muted">Paciente: {agenda[0].paciente.nome}!</h5>
+                  <h5 className="text-muted">Bem vindo(a)!</h5>
                   <h6 className="text-muted mt-4">Próximas consultas:</h6>
                 </div>
 
