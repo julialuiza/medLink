@@ -22,12 +22,11 @@ function Home() {
 
   const handleSendNotification = async () => {
     try {
-      await fetch('https://hackathon-332-api-production.up.railway.app/agenda/paciente/1', {
+      await fetch('https://hackathon-332-api-production.up.railway.app/notificacao/lembrete/1', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: {},
       });
       setShowToast(true);
     } catch (error) {
