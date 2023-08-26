@@ -1,48 +1,22 @@
-# React Bootstrap Starter Project
+# MedLink
 
-A simple, clean starter project with React and Bootstrap 5.
+Imagine uma plataforma que quebra barreiras e conecta médicos, especialistas e terapeutas em um esforço colaborativo inovador. Apresentamos o MedLink, o divisor de águas na gestão de tratamentos médicos.
 
-The public pages.
-![Screenshot of a public page](screenshot_public.png)
+Possivelmente você conhece algum tratamento que gerou confusão quando múltiplos profissionais de saúde estão envolvidos em um tratamento complexo. Erros, tratamentos duplicados e comunicação desordenada afetam negativamente a qualidade do cuidado. O MedLink visa resolver isso.
 
-The restricted admin console.
-![Screenshot of the admin console](screenshot_console.png)
+Nossa plataforma cria uma ponte entre especialistas, permitindo uma colaboração perfeita. Sanando à falta de comunicação e disponibilizando uma gestão de tratamento integrada.
 
-## Motivation
+Principais Recursos do MedLink:
+Perfil de Paciente Centralizado: Com o MedLink, cada paciente tem um painel central que reúne todas as informações críticas. Histórico médico, resultados de testes, tratamentos passados e presentes - tudo à sua disposição com um clique.
 
-Learning React through this project and motivated to create a boilerplate project that I (or anyone) can use. Here are some of the design principles for this project.
+Acesso do Paciente: Não é apenas para os profissionais. Os pacientes também podem acessar a plataforma, visualizando seu histórico médico e até agendando consultas.
 
-* Keep it simple.
-* Use it for quick prototyping yet extensible enough for a production-ready project.
-* Leverage `eslint` and `prettier` with the right amount of plugins and mix of configurations to maximize for developer productivity and code cleanliness.
+Alertas e Notificações Inteligentes: O MedLink não deixa passar nada despercebido. Alertas automáticos mantêm os profissionais informados sobre mudanças críticas no tratamento. Isso garante ação rápida e decisões informadas.
 
-## Setup
+Com o MedLink, estamos transformando a experiência do tratamento médico. Da comunicação fragmentada à colaboração perfeita, estamos abrindo caminho para um novo paradigma de cuidados de saúde.
 
-1. Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Junte-se a nós na revolução da HealthcareTechLink e descubra como o MedLink está redefinindo a maneira como tratamentos médicos são administrados. Juntos, estamos construindo um futuro mais saudável e conectado.
 
-   ```bash
-   $ yarn start
-   ```
+A MedLink é a solução para a coordenação eficiente no complexo mundo dos tratamentos médicos.
 
-   The page will reload if you make edits. You will also see any lint errors in the console.
-
-1. Launches the test runner in the interactive watch mode.
-
-   ```bash
-   $ yarn test
-   ```
-
-1. Builds the app for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance.
-
-   ```bash
-   $ yarn build
-   ```
-
-## Credits
-
-* [Bootstrap 5 Examples](https://getbootstrap.com/docs/5.1/examples) - Used many of the examples on Bootstrap 5 website on this project.
-* [Form validation with React Hook](https://felixgerschau.com/react-hooks-form-validation-typescript/) - Borrowed code to write a custom React Hook to handle a form, including validation.
-
-## Reference
-
-* [React Router v6](https://github.com/remix-run/react-router/)
+![Screenshot of medlink](medlink.jpeg)
