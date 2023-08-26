@@ -1,21 +1,18 @@
 import { NavLink } from 'react-router-dom';
 
 import './navbar.css';
-import logo from './logo.svg';
 
 function MainNavbar() {
   const items = [
-    { path: '/', title: 'Inicial' },
-    { path: '/signup', title: 'Notificações' },
-    { path: '/consultas', title: 'Gerenciar agendamentos' },
-    { path: '/login', title: 'Histórico' },
+    { path: '/', title: 'Início' },
+    { path: '/consultas', title: 'Agendamentos' },
+    { path: '/historico', title: 'Histórico' },
   ];
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container-fluid">
-        <a className="navbar-brand d-flex pt-2" href="/">
-          <img src={logo} alt="" className="navbar-logo" />
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary navbar-background-color">
+      <div className="container-fluid ">
+        <a className="navbar-brand d-flex" href="/">
           MedLink
         </a>
         <button

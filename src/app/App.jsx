@@ -14,6 +14,8 @@ import Dashboard from '../pages/Dashboard';
 import Apps from '../pages/Apps';
 import Users from '../pages/Users';
 import Settings from '../pages/Settings';
+import Historico from '../pages/Historico';
+import Notificacoes from '../pages/Notificacoes';
 
 function App() {
   return (
@@ -21,8 +23,11 @@ function App() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route path="" element={<Home />} />
+
           <Route path="login" element={<Login />} />
           <Route path="consultas" element={<Consultas />} />
+          <Route path="historico" element={<Historico />} />
+          <Route path="notificacoes" element={<Notificacoes />} />
           <Route path="signup" element={<Signup />} />
           <Route path="forgot" element={<ForgotPassword />} />
           <Route path="not-found" element={<NotFound />} />

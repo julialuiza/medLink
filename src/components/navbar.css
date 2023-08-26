@@ -4,6 +4,10 @@
   height: 32px;
 }
 
+.navbar-background-color {
+  background-color: #1c8aa0 !important;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .navbar-logo {
     animation: navbar-logo-spin infinite 20s linear;
